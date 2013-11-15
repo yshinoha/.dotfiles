@@ -1,299 +1,182 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
+" general settings
+se nu
+se sw=4
+se ts=4
+se sc
+se si
+se hls
+se is
+se title
+se et
+se nf-=octal
+se ruler
+se sm
+se bs=2
+se cul
+se sta
+se fdm=marker
 
-" set rtp+=~/.vim/bundle/vundle/
-" call vundle#rc()
-
-" let Vundle manage Vundle
-" required!
-" Bundle 'gmarik/vundle'
-
-"" My Bundles here:
-""
-"" original repos on github
-" Bundle 'fholgado/minibufexpl.vim'
-" Bundle 'pangloss/vim-javascript'
-"Bundle 'scrooloose/syntastic'
-
-" syntastic
-let g:syntastic_mode_map = { 'mode': 'active',
- \ 'active_filetypes': [],
- \ 'passive_filetypes': ['html', 'javascript'] }
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_javascript_checker = 'gjslint'
-
-" BASIC
-set autoindent
-set nobackup
-set cmdheight=1
-set noerrorbells
-set shiftwidth=2
-set tabstop=2
-set expandtab
-set paste
-" LIST
-set list
-set listchars=tab:>-,extends:<,trail:-,eol:<
-
-" STATUS LINE
-set statusline=
-set statusline+=[*%n]\
-set statusline+=%f
-set statusline+=%{'['.(&fenc!=''?&fenc:'?').'-'.&ff.']'}
-set statusline+=%m
-set statusline+=%r
-set statusline+=%h
-set statusline+=%w
-set statusline+=%w
-set statusline+=%=
-set statusline+=\ %{strftime('%c')}
-set statusline+=%4l,%2c
-set statusline+=%3p%%
-set statusline+=%<
-
-set laststatus=2
-" CHAR ENCODING
-set termencoding=utf-8
-set encoding=utf-8
-set fileencoding=utf-8
-scriptencoding utf-8
-"set fileencodings=utf-8,iso-2022-jp,eucjp,ucs2le,ucs-2
-
-set backspace=indent,eol,start
-autocmd BufWritePre * :%s/\s\+$//ge
-syntax on
-
-set title
-imap { {}<LEFT>
-imap [ []<LEFT>
-imap ( ()<LEFT>
-let php_sql_query=1
-let php_htmlInStrings=1
-let php_noShortTags =0
-autocmd FileType php :map <C-e> <ESC>:!php -l %<CR>
-autocmd FileType php :map <C-r> <ESC>:!php %<CR>
-set dictionary=dictionary/php.dict
-au BufRead,BufNewFile *.html,*.tpl set filetype=php
-au FileType php :set dictionary+=~/.vim/dictionary/PHP.dict
-set complete+=k
-
-"color Scheme
-"set bg=dark
-let g:zenburn_high_Contrast = 1
-let g:liquidcarbon_high_contrast = 1
-let g:molokai_original = 1
-"let g:Powerline_cache_file = expand('$TMP/Powerline.cache')
-set t_Co=256
-"colorscheme molokai
-colorscheme hybrid
-
-"autocmd BufWriteCmd *.js :call CompileJS()
-autocmd BufWritePre * :%s/\s\+$//ge
-function CompileJS()
-  if &modified
-    write
-    let fn = expand('%:p')
-    let pn = expand('%:p:h')
-    let fnm = expand('%:r.js')
-    let cpa = '/usr/bin/compiler.jar'
-    execute "! java -jar " . cpa . " --js=" . fn . " --js_output_file=" . pn . "/" . fnm . ".min.js"
-  endif
-endfunction
-nmap <C-C><C-C> :call CompileJS()<CR>
-
-if exists("current_compiler")
-  finish
+" my autocmds
+if has("autocmd")
+    " save cursor position
+    autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     exe "normal g`\"" |
+        \ endif
 endif
 
-let current_compiler = "closure"
 
-if exists(":CompilerSet") != 2
-  " older Vim always used :setlocal
-  command -nargs=* CompilerSet setlocal <args>
+" keymap
+if &diff
+    map <Leader>1 :diffget LOCAL<CR>
+    map <Leader>2 :diffget BASE<CR>
+    map <Leader>3 :diffget REMOTE<CR>
 endif
 
-CompilerSet makeprg=java\ -jar\ /usr/bin/compiler.jar\ --js_output_file=%<.min.js\ --js\ %
-CompilerSet errorformat=%E%f:%l:\ %m,%-Z%p^,%-C%.%#,%-G%.%#
 
-set nocompatible               " be iMproved
-filetype off
-
+" NeoBundle
+" $ mkdir -p ~/.vim/bundle
+" $ git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+" run :NeobundleInstall on vim
+se nocp                       " Be iMproved
+filetype off                  " Required!
 
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle/'))
+    se runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-" originalrepos on github
 
-NeoBundle 'Shougo/neobundle.vim'
+call neobundle#rc(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim' " Let NeoBundle manage NeoBundle
+
+" Recommended to install
+" After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
 NeoBundle 'Shougo/vimproc'
-NeoBundle 'VimClojure'
+
+
+" encoding
+"source $VIM/encode.vim
+
+
+" syntax
+syn on
+NeoBundle 'derekwyatt/vim-scala'
+au BufNewFile,BufReadPost *.scala setl filetype=scala
+NeoBundle 'derekwyatt/vim-sbt'
+au BufNewFile,BufReadPost *.sbt setl filetype=sbt
+
+" colorscheme
+NeoBundle 'desert256.vim'
+NeoBundle 'molokai'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+NeoBundle 'akiomik/itermcolors-vim'
+set t_Co=256
+colorscheme molokai
+"set background=dark
+"colorscheme solarized
+
+" powerline
+NeoBundle 'Lokaltog/vim-powerline'
+set guifont=Inconsolata\ for\ Powerline
+let g:Powerline_symbols = 'fancy'
+se ls=2
+se nosmd
+
+" SQLUtilities
+" run :SQLUFormatter on vim??
+NeoBundle 'Align'
+NeoBundle 'SQLUtilities'
+
+" Vimshell
 NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'jpalardy/vim-slime'
-NeoBundle 'pangloss/vim-javascript'
+command! Scala :VimShellInteractive scala
+command! Sbt :VimShellInteractive sbt
 
-"NeoBundle 'scrooloose/syntastic'
-""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
+" git-gutter
+NeoBundle 'akiomik/git-gutter-vim'
 
-filetype plugin indent on     " required!
-filetype indent on
-"""vi上から、:NeoBundleInstallで.vimrcのNeoBundleで指定されているリポジトリのプラグインをインストールできる。
-"""プラグインを削除したい場合は、vimrc上からNeoBundleの記述を消して:NeoBundleCleanでできる。
-
-NeoBundle 'git://github.com/Lokaltog/powerline.git'
-"NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
-NeoBundle 'leafgarland/typescript-vim' " Typescript
-NeoBundle 'taichouchou2/alpaca_powertabline'
-
-""" jshint
-"Bundle 'tpope/vim-pathogen'
-"Bundle 'scrooloose/syntastic'
-"call pathogen#infect()
-
-" ステータスbar
-NeoBundle 'itchyny/lightline.vim'
+" fugitive
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'airblade/vim-gitgutter'
 
+" minibufexplorer
+NeoBundle 'minibufexpl.vim'
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBuffs = 1
+nmap <C-n> :MBEbn<CR>
+nmap <C-p> :MBEbp<CR>
+"nmap <C-d> :bd<CR>
 
+" nerdtree
+NeoBundle 'scrooloose/nerdtree'
+let g:NERDTreeDirArrows=0
+autocmd vimenter * if !argc() | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" vim-gitgutter
-let g:gitgutter_sign_added = '✚'
-let g:gitgutter_sign_modified = '➜'
-let g:gitgutter_sign_removed = '✘'
+" vimfiler
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler.vim'
+let g:vimfiler_as_default_explorer = 1
 
-" lightline.vim
-let g:lightline = {
-        \ 'colorscheme': 'landscape',
-        \ 'mode_map': {'c': 'NORMAL'},
-        \ 'active': {
-        \   'left': [
-        \     ['mode', 'paste'],
-        \     ['fugitive', 'gitgutter', 'filename'],
-        \   ],
-        \   'right': [
-        \     ['lineinfo', 'syntastic'],
-        \     ['percent'],
-        \     ['charcode', 'fileformat', 'fileencoding', 'filetype'],
-        \   ]
-        \ },
-        \ 'component_function': {
-        \   'modified': 'MyModified',
-        \   'readonly': 'MyReadonly',
-        \   'fugitive': 'MyFugitive',
-        \   'filename': 'MyFilename',
-        \   'fileformat': 'MyFileformat',
-        \   'filetype': 'MyFiletype',
-        \   'fileencoding': 'MyFileencoding',
-        \   'mode': 'MyMode',
-        \   'syntastic': 'SyntasticStatuslineFlag',
-        \   'charcode': 'MyCharCode',
-        \   'gitgutter': 'MyGitGutter',
-        \ },
- \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+" coffee
+NeoBundle 'kchmck/vim-coffee-script'
+au BufNewFile,BufReadPost *.coffee setl filetype=coffee
+au BufNewFile,BufReadPost *.coffee setl sw=2 et
+
+" puppet
+NeoBundle 'rodjek/vim-puppet'
+au BufNewFile,BufReadPost *.pp setl filetype=puppet
+
+" syntastic
+NeoBundle 'scrooloose/syntastic'
+let g:syntastic_java_javac_options="-J-Dfile.encoding=UTF-8 -Xlint"
+
+" comment
+NeoBundle 'tomtom/tcomment_vim'
+
+" ctrlp
+NeoBundle 'kien/ctrlp.vim'
+
+" indent
+NeoBundle 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=0
+let g:indent_guides_auto_colors=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
+
+" tagbar
+NeoBundle 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+if executable('coffeetags')
+    let g:tagbar_type_coffee = {
+        \ 'ctagsbin' : 'coffeetags',
+        \ 'ctagsargs' : '',
+        \ 'kinds' : [
+        \ 'f:functions',
+        \ 'o:object',
+        \ ],
+        \ 'sro' : ".",
+        \ 'kind2scope' : {
+        \ 'f' : 'object',
+        \ 'o' : 'object',
         \ }
+    \ }
+endif
 
-function! MyModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
+" scss
+NeoBundle 'cakebaker/scss-syntax.vim'
+au BufNewFile,BufReadPost *.scss setl filetype=scss
 
-function! MyReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &ro ? '[]' : ''
-endfunction
+" surround
+NeoBundle 'tpope/vim-surround'
 
-function! MyFilename()
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != MyModified() ? ' ' . MyModified() : '')
-endfunction
+" easymotion
+NeoBundle 'Lokaltog/vim-easymotion'
 
-function! MyFugitive()
-  try
-    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-      let _ = fugitive#head()
-      return strlen(_) ? '[]'._ : ''
-    endif
-  catch
-  endtry
-  return ''
-endfunction
+" multiple cursor
+NeoBundle 'terryma/vim-multiple-cursors'
 
-function! MyFileformat()
-  return winwidth('.') > 70 ? &fileformat : ''
-endfunction
-
-function! MyFiletype()
-  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
-
-function! MyFileencoding()
-  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
-
-function! MyMode()
-  return winwidth('.') > 60 ? lightline#mode() : ''
-endfunction
-
-function! MyGitGutter()
-  if ! exists('*GitGutterGetHunkSummary')
-        \ || ! get(g:, 'gitgutter_enabled', 0)
-        \ || winwidth('.') <= 90
-    return ''
-  endif
-  let symbols = [
-        \ g:gitgutter_sign_added . ' ',
-        \ g:gitgutter_sign_modified . ' ',
-        \ g:gitgutter_sign_removed . ' '
-        \ ]
-  let hunks = GitGutterGetHunkSummary()
-  let ret = []
-  for i in [0, 1, 2]
-    if hunks[i] > 0
-      call add(ret, symbols[i] . hunks[i])
-    endif
-  endfor
-  return join(ret, ' ')
-endfunction
-
-" https://github.com/Lokaltog/vim-powerline/blob/develop/autoload/Powerline/Functions.vim
-function! MyCharCode()
-  if winwidth('.') <= 70
-    return ''
-  endif
-
-  " Get the output of :ascii
-  redir => ascii
-  silent! ascii
-  redir END
-
-  if match(ascii, 'NUL') != -1
-    return 'NUL'
-  endif
-
-  " Zero pad hex values
-  let nrformat = '0x%02x'
-
-  let encoding = (&fenc == '' ? &enc : &fenc)
-
-  if encoding == 'utf-8'
-    " Zero pad with 4 zeroes in unicode files
-    let nrformat = '0x%04x'
-  endif
-
-  " Get the character and the numeric value from the return value of :ascii
-  " This matches the two first pieces of the return value, e.g.
-  " "<F>  70" => char: 'F', nr: '70'
-  let [str, char, nr; rest] = matchlist(ascii, '\v\<(.{-1,})\>\s*([0-9]+)')
-
-  " Format the numeric value
-  let nr = printf(nrformat, nr)
-
-  return "'". char ."' ". nr
-endfunction
+filetype plugin indent on
+NeoBundleCheck

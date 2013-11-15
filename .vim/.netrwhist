@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/yshinoha/src/boxen/.bundle/ruby/2.0.0/gems/rspec-core-2.14.6/features/command_line'
+let g:netrw_dirhist_2='/Users/yshinoha/src/boxen/.bundle/ruby/2.0.0/gems/rspec-core-2.14.6/spec/command_line'
+let g:netrw_dirhist_3='/Users/yshinoha/src/boxen/.git'
+let g:netrw_dirhist_4='/Users/yshinoha/src/boxen'
+let g:netrw_dirhist_5='/Users/yshinoha/src/boxen/modules'
+let g:netrw_dirhist_6='/Users/yshinoha/src/boxen/modules/people'
+let g:netrw_dirhist_7='/Users/yshinoha/src/boxen/modules/people/manifests'

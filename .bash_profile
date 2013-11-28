@@ -36,4 +36,26 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 GIT_PS1_SHOWDIRTYSTATE=true
 export PS1='\[\033[00;32m\]\u@\H\[\033[00;34m\] \[\033[00;31m\]\w \[\033[00m\]\$ '
 
+PS_USER="\[\e[33m\]\u\[\e[0m\]"
+PS_HOST="\[\e[32m\]\h\[\e[0m\]"
+PS_WORK="\[\e[37;1m\]\W\[\e[0m\]"
+PS_SCREEN=""
+PS_SSH=""
+
+if [ -n "${PARTTY_SESSION}" ] ; then
+    PS_HOST="\[\e[32m\]${PARTTY_SESSION}!\[\e[0m\]"
+fi
+if [ -n "${WINDOW}" ] ; then
+    PS_SCREEN="(\[\e[35m\]${WINDOW}\[\e[0m\])"
+fi
+if [ -n "${SSH_CLIENT}" ] ; then
+    PS_SSH="(\[\e[36m\]`echo ${SSH_CLIENT} | sed 's/ [0-9]\+ [0-9]\+$//g'`\[\e[0m\])"
+fi
+if [ -f ~/.atode ]; then
+    PS_ATODE="(\`cat ~/.atode | wc -l\`)"
+fi
+export PS1="[${PS_USER}${PS_SCREEN}@${PS_HOST}${PS_SSH}${PS_ATODE} ${PS_WORK}]\$ "
+
+
+
 export EDITOR="vim"

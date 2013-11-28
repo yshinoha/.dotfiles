@@ -33,8 +33,24 @@ export LS_COLORS='no=00:fi=00:di=00;36:ln=00;30:pi=40;33:so=00;35:bd=40;33;00:cd
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
 # status bar
+export ESC="$(echo -en '\033')"
+export COLOUR_RED="$(echo -en '\033[31m')"
+export COLOUR_GREEN="$(echo -en '\033[32m')"
+export COLOUR_YELLOW="$(echo -en '\033[33m')"
+export COLOUR_BLUE="$(echo -en '\033[34m')"
+export COLOUR_CYAN="$(echo -en '\033[35m')"
+export COLOUR_MAGENTA="$(echo -en '\033[36m')"
+export COLOUR_WHITE="$(echo -en '\033[37m')"
+export COLOUR_HIGHLIGHT_RED="$(echo -en '\033[31;1m')"
+export COLOUR_HIGHLIGHT_GREEN="$(echo -en '\033[32;1m')"
+export COLOUR_HIGHLIGHT_YELLOW="$(echo -en '\033[33;1m')"
+export COLOUR_HIGHLIGHT_BLUE="$(echo -en '\033[34;1m')"
+export COLOUR_HIGHLIGHT_CYAN="$(echo -en '\033[35;1m')"
+export COLOUR_HIGHLIGHT_MAGENTA="$(echo -en '\033[36;1m')"
+export COLOUR_HIGHLIGHT_WHITE="$(echo -en '\033[37;1m')"
+export COLOUR_DEFAULT="$(echo -en '\033[m')"
+
 GIT_PS1_SHOWDIRTYSTATE=true
-export PS1='\[\033[00;32m\]\u@\H\[\033[00;34m\] \[\033[00;31m\]\w \[\033[00m\]\$ '
 
 PS_USER="\[\e[33m\]\u\[\e[0m\]"
 PS_HOST="\[\e[32m\]\h\[\e[0m\]"

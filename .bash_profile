@@ -3,7 +3,8 @@
 ## rbenv
 #
 if [[ -s /opt/boxen/rbenv/bin ]] ; then
-    rbenv global 2.0.0-p247
+    rbenv global  1.9.3-p448
+    #rbenv global 2.0.0-p247
     rbenv version | sed -e 's/ .*//'
 fi
 
@@ -30,6 +31,7 @@ alias ll='ls -liahG'
 export LS_COLORS='no=00:fi=00:di=00;36:ln=00;30:pi=40;33:so=00;35:bd=40;33;00:cd=40;33;00:ex=00;35:*~=05;31:*.mtxt=05;31:*.ndx=05;31:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.c=00;33:*.h=00;33:*.pl=00;33:*.pm=00;33:*.cgi=00;33:*.java=00;33:*.html=00;33:*.sh=00;33:*.txt=00;35:*.tar=00;31:*.tgz=00;31:*.gz=00;31:*.tgz=00;31:*.bz2=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.jpg=00;35:*.jpeg=00;35:*.JPG=00;35:*.gif=00;35:*.GIF=00;35:*.bmp=00;35:*.BMP=00;35:*.xbm=00;35:*.ppm=00;35:*.xpm=00;35:*.tif=00;35:';
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
+# status bar
 GIT_PS1_SHOWDIRTYSTATE=true
 
 PS_USER="\[\e[33m\]\u\[\e[0m\]"
@@ -52,6 +54,6 @@ if [ -f ~/.atode ]; then
 fi
 export PS1="[${PS_USER}${PS_SCREEN}@${PS_HOST}${PS_SSH}${PS_ATODE} ${PS_WORK}]\$ "
 
-
+# editor
 export EDITOR="vim"
 

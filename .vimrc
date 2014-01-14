@@ -189,3 +189,10 @@ scriptencoding utf-8
 
 filetype plugin indent on
 NeoBundleCheck
+
+"===============================
+"add origin
+set paste
+
+"scala 
+NeoBundle 'derekwyatt/vim-scala'

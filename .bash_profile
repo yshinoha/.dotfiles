@@ -57,3 +57,6 @@ export PS1="[${PS_USER}${PS_SCREEN}@${PS_HOST}${PS_SSH}${PS_ATODE} ${PS_WORK}]\$
 # editor
 export EDITOR="vim"
 
+
+# python
+export ATLAS=$HOME

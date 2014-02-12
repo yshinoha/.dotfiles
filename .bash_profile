@@ -1,5 +1,5 @@
 if [[ -s /bin/zsh ]] ; then
-    /bin/zsh
+    exec /bin/zsh
 else
   if [[ -s ~/.bashrc ]] ; then
     . ~/.bashrc

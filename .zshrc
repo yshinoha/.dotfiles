@@ -1,4 +1,6 @@
-. ~/.bashrc
+if [[ -f ~/.bashrc ]] ; then
+  . ~/.bashrc
+fi
 
 # (d) is default on
 
@@ -84,7 +86,8 @@ function git_prompt_stash_count {
 }
 
 setopt prompt_subst
-autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
+
+# 表示フォーマットの指定
 
 function rprompt-git-current-branch {
   local name st color action
@@ -117,10 +120,16 @@ function rprompt-git-current-branch {
   echo "%{$color%}$name%{$reset_color%}:"
 }
 
+function prompt_yroot_name {
+  if [ "x$YROOT_NAME" != "x" ]; then
+    echo "%{$reset_color%}($YROOT_NAME)" #yroot名も表示
+  fi
+}
+
 # how to use
 
 # 一般ユーザ時
-tmp_prompt="%{${fg[cyan]}%}%n%# %{${reset_color}%}"
+tmp_prompt="%{${fg[cyan]}%}%n%{${reset_color}%}|%{$fg[green]%}${HOST}`prompt_yroot_name`% %{${reset_color}%} -> "
 tmp_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
 tmp_rprompt="[`rprompt-git-current-branch`%{${fg[green]}%}%~%{${reset_color}%}]"
 tmp_sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
@@ -137,6 +146,19 @@ PROMPT=$tmp_prompt    # 通常のプロンプト
 PROMPT2=$tmp_prompt2  # セカンダリのプロンプト(コマンドが2行以上の時に表示される)
 RPROMPT=$tmp_rprompt  # 右側のプロンプト
 SPROMPT=$tmp_sprompt  # スペル訂正用プロンプト
+
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' formats '(%s)-[%b]'
+zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+precmd () {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+RPROMPT="%1(v|%F{green}%1v%f|)"
+RPROMPT=$tmp_rprompt  # 右側のプロンプト
+
+
 # SSHログイン時のプロンプト
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
 #  PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
@@ -157,6 +179,9 @@ esac
 # ------------------------------
 ### RVM ###
 if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
+
+### NVM ###
+if [[ -s ~/.nvm/nvm.sh ]] ; then source ~/.nvm/nvm.sh ; fi
 
 ### Macports ###
 case "${OSTYPE}" in

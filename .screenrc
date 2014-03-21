@@ -3,28 +3,34 @@ defutf8 on
 defkanji utf-8
 encoding utf-8 utf-8
 defencoding utf-8
-#
+
 # set term
 #term xterm-color
 defbce "on"
+
 #
 # no start up message
 startup_message off
+
 #
 # key
 escape ^z^z
+
 #
 # # don't remove windows from the window list as soon as window process exits
 zombie kr
+
 #
 # enable to scroll by mouse or keyboard
 #termcapinfo xterm* ti@:te@
 term xterm-256color
 termcapinfo xterm-256color 'is=^[r^[mJ^[H^[?7h^[?1;4;6l'
+
 #
 # scroll buffer
 defscrollback 10000
 markkeys h=^B:l=^F:$=^E
+
 #
 # shortcut of screen with title option.
 bind s colon 'screen -t '

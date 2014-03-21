@@ -1,27 +1,43 @@
-# update Homebrew
-update
-
-install tree
-install wget
-install tmux
-
-tap phinze/homebrew-cask || true
+# tap
 tap phinze/cask || true
 tap caskroom/versions || true
 tap aereal/homebrew-aereal_casks || true
 tap caskroom/homebrew-fonts || true
 
+# Homebrewを最新版にアップデート
+#update
 
-#install brew-cask
-cask install firefox
+# Formulaを更新
+upgrade
+
+install autoconf
+install wget
+install tree
+install fontforge
+install markdown
+install git
+install tmux
+install hub
+
+# install Ruby
+install openssl
+install rbenv
+install readline
+install ruby-build
+
+# homebrew-caskのインストール
+tap phinze/homebrew-cask
+install brew-cask
+
+# インストール
 cask install google-chrome
 cask install google-chrome-canary
-cask install skitch
-cask install evernote
+cask install firefox
 cask install sublime-text
-cask install virtualbox
-cask install vagrant
 
+tap jingweno/gh
+cask install vagrant
+cask install evernote
 cask install mou
 
 cleanup

@@ -120,16 +120,16 @@ function rprompt-git-current-branch {
   echo "%{$color%}$name%{$reset_color%}:"
 }
 
-function prompt_yroot_name {
+function prompt_root_name {
   if [ "x$YROOT_NAME" != "x" ]; then
-    echo "%{$reset_color%}($YROOT_NAME)" #yroot名も表示
+    echo "%{$reset_color%}($YROOT_NAME)" 
   fi
 }
 
 # how to use
 
 # 一般ユーザ時
-tmp_prompt="%{${fg[cyan]}%}%n%{${reset_color}%}|%{$fg[green]%}${HOST}`prompt_yroot_name`% %{${reset_color}%} -> "
+tmp_prompt="%{${fg[cyan]}%}%n%{${reset_color}%}|%{$fg[green]%}${HOST}`prompt_root_name`% %{${reset_color}%} -> "
 tmp_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
 tmp_rprompt="[`rprompt-git-current-branch`%{${fg[green]}%}%~%{${reset_color}%}]"
 tmp_sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"

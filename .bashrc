@@ -15,8 +15,8 @@ if [[ -s /opt/boxen/nodenv/bin ]] ; then
     nodenv version | sed -e 's/ .*//'
 fi
 
-if [[ -s ~/.nvm/nvm.sh ]] ; then
-    source ~/.nvm/nvm.sh
+if [[ -s /usr/local/Cellar/nvm/0.2.0/nvm.sh ]] ; then
+    source /usr/local/Cellar/nvm/0.2.0/nvm.sh
     nvm use 0.11
 fi
 # bashrc

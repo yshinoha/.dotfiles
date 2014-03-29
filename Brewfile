@@ -18,6 +18,8 @@ install markdown
 install git
 install tmux
 install hub
+install nvm
+install phantomjs
 
 # install Ruby
 install openssl

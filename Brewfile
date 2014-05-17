@@ -3,6 +3,8 @@ tap phinze/cask || true
 tap caskroom/versions || true
 tap aereal/homebrew-aereal_casks || true
 tap caskroom/homebrew-fonts || true
+tap homebrew/science || true
+tap phinze/homebrew-cask || true
 
 # Homebrewを最新版にアップデート
 #update
@@ -27,15 +29,23 @@ install rbenv
 install readline
 install ruby-build
 
+# install php
+tap josegonzalez/homebrew-php || true
+install mcrypt
+install --HEAD phpenv || true
+install --HEAD php-build || true
+
 # homebrew-caskのインストール
-tap phinze/homebrew-cask
 install brew-cask
+
+install opencv
 
 # インストール
 cask install google-chrome
 cask install google-chrome-canary
 cask install firefox
 cask install sublime-text
+cask install skitch
 
 tap jingweno/gh
 cask install vagrant

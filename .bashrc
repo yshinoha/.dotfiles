@@ -19,6 +19,15 @@ if [[ -s /usr/local/Cellar/nvm/0.2.0/nvm.sh ]] ; then
     source /usr/local/Cellar/nvm/0.2.0/nvm.sh
     nvm use 0.11
 fi
+
+
+if [[ -s $HOME/.phpenv/bin ]] ; then
+    # phpenvの設定
+    export PATH="$HOME/.phpenv/bin:$PATH"
+    eval "$(phpenv init -)"
+fi
+
+
 # bashrc
 #export LC_CTYPE=C
 export LANG=ja_JP.UTF-8
@@ -72,3 +81,6 @@ export EDITOR="vim"
 
 # python
 export ATLAS=$HOME
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

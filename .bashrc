@@ -8,6 +8,11 @@ if [[ -s /opt/boxen/rbenv/bin ]] ; then
     rbenv version | sed -e 's/ .*//'
 fi
 
+if [[ -s $(brew --prefix nvm)/nvm.sh ]] ; then
+  source $(brew --prefix nvm)/nvm.sh
+  export NVM_DIR=~/.nvm
+fi
+
 ## nodenv
 #
 if [[ -s /opt/boxen/nodenv/bin ]] ; then
@@ -20,6 +25,8 @@ if [[ -s /usr/local/Cellar/nvm/0.2.0/nvm.sh ]] ; then
     nvm use 0.11
 fi
 
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+    export PATH=$PATH:/usr/local/Cellar/go/1.2.1/libexec/bin
 
 if [[ -s $HOME/.phpenv/bin ]] ; then
     # phpenvの設定

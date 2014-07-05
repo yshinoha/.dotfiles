@@ -113,7 +113,8 @@ function rprompt-git-current-branch {
   fi
 
   gitdir=`git rev-parse --git-dir 2> /dev/null`
-  action=`VCS_INFO_git_getaction "$gitdir"` && action="($action)"
+  #action=`VCS_INFO_git_getaction "$gitdir"` && action="($action)"
+  action=''
 
   # %{...%} surrounds escape string
   #echo "%{$color%}$name$action`git_prompt_stash_count`$color%{$reset_color%}"

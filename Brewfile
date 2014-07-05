@@ -18,10 +18,13 @@ install tree
 install fontforge
 install markdown
 install git
+install git-flow
 install tmux
 install hub
 install nvm
 install phantomjs
+install docker
+install nkf
 
 # install Ruby
 install openssl

@@ -25,6 +25,8 @@ install nvm
 install phantomjs
 install docker
 install nkf
+install unrar #RAR解凍
+
 
 # install Ruby
 install openssl

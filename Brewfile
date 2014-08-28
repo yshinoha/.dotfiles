@@ -48,6 +48,7 @@ install opencv
 # インストール
 cask install google-chrome
 cask install google-chrome-canary
+cask install google-drive
 cask install firefox
 cask install sublime-text
 cask install skitch

@@ -20,6 +20,12 @@ if [[ -s /opt/boxen/nodenv/bin ]] ; then
     nodenv version | sed -e 's/ .*//'
 fi
 
+## GoLang
+if [[ -s $HOME/go ]] ; then
+    export GOPATH=$HOME/go
+    export PATH=$PATH:$GOPATH/bin
+fi
+
 if [[ -s /usr/local/Cellar/nvm/0.2.0/nvm.sh ]] ; then
     source /usr/local/Cellar/nvm/0.2.0/nvm.sh
     nvm use 0.11

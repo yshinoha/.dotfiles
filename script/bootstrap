@@ -44,7 +44,7 @@ symlink ${RC_PATHS}
 
 # profiles
 symlink ${PROFILE_PATHS}
-symlink .emacs
+symlink "${DOTFILES_DIR}/.emacs"
 
 # conf
 symlink ${CONF_PATHS}

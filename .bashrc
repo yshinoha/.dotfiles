@@ -26,6 +26,10 @@ if [[ -s $HOME/go ]] ; then
     export PATH=$PATH:$GOPATH/bin
 fi
 
+## Scala
+export JAVA_OPTS="-Dfile.encoding=UTF-8"
+
+
 if [[ -s /usr/local/Cellar/nvm/0.2.0/nvm.sh ]] ; then
     source /usr/local/Cellar/nvm/0.2.0/nvm.sh
     nvm use 0.11

@@ -13,6 +13,7 @@ tap phinze/homebrew-cask || true
 upgrade
 
 install autoconf
+install emacs
 install wget
 install tree
 install fontforge
@@ -39,6 +40,9 @@ tap josegonzalez/homebrew-php || true
 install mcrypt
 install --HEAD phpenv || true
 install --HEAD php-build || true
+
+# install scala
+install scala
 
 # homebrew-caskのインストール
 install brew-cask

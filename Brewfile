@@ -14,6 +14,7 @@ upgrade
 
 install autoconf
 install emacs
+install cask
 install wget
 install tree
 install fontforge
@@ -27,7 +28,6 @@ install phantomjs
 install docker
 install nkf
 install unrar #RAR解凍
-
 
 # install Ruby
 install openssl

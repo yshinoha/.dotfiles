@@ -33,7 +33,8 @@
 ; auto-complete
 (require 'auto-complete)
 (require 'auto-complete-config)
-(global-auto-complete-mode t)
+;(global-auto-complete-mode t)
+(global-auto-complete-mode 1)
 (setq ac-auto-start t)
 
 ;pawoer line

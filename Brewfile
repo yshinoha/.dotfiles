@@ -18,7 +18,6 @@ install cask
 install wget
 install tree
 install fontforge
-install markdown
 install git
 install git-flow
 install tmux
@@ -54,12 +53,10 @@ cask install google-chrome
 cask install google-chrome-canary
 cask install google-drive
 cask install firefox
-cask install sublime-text
 cask install skitch
 
 tap jingweno/gh
 cask install vagrant
-cask install evernote
 cask install mou
 
 cleanup

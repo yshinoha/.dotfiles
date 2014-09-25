@@ -44,7 +44,7 @@ symlink ${RC_PATHS}
 
 # profiles
 symlink ${PROFILE_PATHS}
-symlink "${DOTFILES_DIR}/.emacs"
+#symlink "${DOTFILES_DIR}/.emacs"
 
 # conf
 symlink ${CONF_PATHS}
@@ -68,6 +68,18 @@ if [ `uname` = "Darwin" ]; then
     ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
     brew bundle
   fi
+
+  # emacs
+  if [ ! -s ${HOME}/.emacs.d ]; then
+    cmd="cp -r ${DOTFILES_DIR}/.emacs.d ${HOME}/.emacs.d"
+    echo ${cmd}; ${cmd}
+  fi
+
+  cmd="cd ${DOTFILES_DIR}/.emacs.d"
+  echo ${cmd}; ${cmd}
+  cmd="cask install"
+  echo ${cmd}; ${cmd}
+
 fi
 
 

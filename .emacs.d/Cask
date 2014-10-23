@@ -43,7 +43,10 @@
 (depends-on "projectile-rails")
 (depends-on "color-theme-molokai")
 (depends-on "yascroll")
-
+;;go
+(depends-on "go-mode") 
+;;yaml
+(depends-on "yaml-mode")
 ;; Javascript
 (depends-on "js2-mode")
 ;; Ruby

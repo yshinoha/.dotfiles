@@ -200,3 +200,6 @@ alias v=vim
 #function cd() {
 #  builtin cd $@ && ls;
 #}
+
+# added by travis gem
+[ -f /Users/yshinoha/.travis/travis.sh ] && source /Users/yshinoha/.travis/travis.sh

@@ -101,3 +101,6 @@ export ATLAS=$HOME
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# added by travis gem
+[ -f /Users/yshinoha/.travis/travis.sh ] && source /Users/yshinoha/.travis/travis.sh

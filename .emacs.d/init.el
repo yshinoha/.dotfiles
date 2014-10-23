@@ -64,6 +64,15 @@
 ;----------------others-----------------
 ;---------------------------------------
 
+;; M-x wでコピー
+(setq x-select-enable-clipboard t)
+
+;; Ctrl-x p で逆向きへのウィンドウ移動
+(global-set-key "\C-xp" (lambda () (interactive) (other-window -1)))
+
+;; タブ幅をスペース2個幅に変更
+(setq default-tab-width 2)
+
 ;; スタートアップページを表示しない
 (setq inhibit-startup-message t)
 
